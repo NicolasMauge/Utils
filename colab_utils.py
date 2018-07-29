@@ -38,7 +38,7 @@ def download(filename, dest_file=None):
         filename_with_directory = filename
         
     #results = drive.files().list(q="name = '"+filename+"'", fields="files(id)").execute()
-    results = drive.ListFile({'q': "title = '{}' and trashed=false".format(filename)}).GetList()
+    results = drive.ListFile({'q': "title = '%s' and trashed=false"%filename}).GetList()
     #file_id = results.get('files', [])
     #file_id = results[0]['id']
 
