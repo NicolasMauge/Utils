@@ -37,7 +37,7 @@ def download(filename, dest_file=None):
     else:
         filename_with_directory = filename
         
-    results = drive_service.files().list(q="name = '"+filename+"'", fields="files(id)").execute()
+    results = drive.files().list(q="name = '"+filename+"'", fields="files(id)").execute()
     file_id = results.get('files', [])
   
     # Initialize GoogleDriveFile instance with file id.
