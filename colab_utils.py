@@ -3,6 +3,8 @@ from pydrive.drive import GoogleDrive
 from google.colab import auth
 from oauth2client.client import GoogleCredentials
 
+from os
+
 def googledrive_auth():
     # Create GoogleDrive instance with authenticated GoogleAuth instance.
     auth.authenticate_user()
