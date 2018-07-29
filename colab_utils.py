@@ -33,7 +33,7 @@ def download(filename, dest_file=None):
     """
         download a file 'filename' from google drive to a specific directory 'dest_file'
 
-        example : download('kaggle.json', dest_file='content/.kaggle/')
+        example : download('kaggle.json', dest_file='/content/.kaggle/')
     """
     drive, gauth = googledrive_auth()
 
