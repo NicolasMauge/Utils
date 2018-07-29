@@ -18,6 +18,9 @@ def googledrive_auth():
     return drive, gauth
 
 def upload(filename):
+    """
+        upload a file 'filename' to google drive
+    """
     drive, gauth = googledrive_auth()
 
     file_upload = drive.CreateFile()
@@ -27,6 +30,11 @@ def upload(filename):
     print('title: %s, mimeType: %s' % (file_upload['title'], file_upload['mimeType']))
 
 def download(filename, dest_file=None):
+    """
+        download a file 'filename' from google drive to a specific directory 'dest_file'
+
+        example : download('kaggle.json', dest_file='content/.kaggle/')
+    """
     drive, gauth = googledrive_auth()
 
     drive_service = build('drive', 'v3')
