@@ -36,10 +36,7 @@ def download(filename, dest_file=None):
     else:
         filename_with_directory = filename
 
-    #results = drive.files().list(q="name = '"+filename+"'", fields="files(id)").execute()
     results = drive.ListFile({'q': "title = '{}' and trashed=false".format(filename)}).GetList()
-    #file_id = results.get('files', [])
-    #file_id = results[0]['id']
 
     # Initialize GoogleDriveFile instance with file id.
     file_download = drive.CreateFile({'id': results[0]['id']})
@@ -61,7 +58,6 @@ def download_v2(filename, dest_file=None):
     else:
         filename_dest = filename
         
-    #filename = "/content/.kaggle/kaggle.json"
     os.makedirs(os.path.dirname(filename_dest), exist_ok=True)
     request = drive_service.files().get_media(fileId=results_files[0]['id'])
     fh = io.FileIO(filename_dest, 'wb')
