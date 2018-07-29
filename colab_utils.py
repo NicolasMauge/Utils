@@ -37,11 +37,13 @@ def download(filename, dest_file=None):
     else:
         filename_with_directory = filename
         
-    results = drive.files().list(q="name = '"+filename+"'", fields="files(id)").execute()
-    file_id = results.get('files', [])
-  
+    #results = drive.files().list(q="name = '"+filename+"'", fields="files(id)").execute()
+    results = drive.ListFile({'q': "name = '"+filename+"'", fields="files(id)"}).GetList()
+    #file_id = results.get('files', [])
+    #file_id = results[0]['id']
+
     # Initialize GoogleDriveFile instance with file id.
-    file_download = drive.CreateFile({'id': file_id[0]['id']})
+    file_download = drive.CreateFile({'id': results[0]['id']})
     file_download.GetContentFile(filename_with_directory) # Download file as 'catlove.png'.
 
     print('title: {}, mimeType: {}, id: {}'.format(file_download['title'], file_download['mimeType'], file_download['id']))
