@@ -44,10 +44,10 @@ def download(filename, dest_file=None):
 
     if dest_file is not None:
         filename_dest = dest_file + filename
+        os.makedirs(os.path.dirname(filename_dest), exist_ok=True)
     else:
         filename_dest = filename
         
-    os.makedirs(os.path.dirname(filename_dest), exist_ok=True)
     request = drive_service.files().get_media(fileId=results_files[0]['id'])
     fh = io.FileIO(filename_dest, 'wb')
     downloader = MediaIoBaseDownload(fh, request)
